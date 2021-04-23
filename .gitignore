@@ -6,6 +6,7 @@
 .idea
 .project
 .classpath
+/src/main/resources/assets/textures
 
 
 # Ignore Gradle GUI config
