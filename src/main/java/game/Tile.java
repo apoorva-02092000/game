@@ -1,15 +1,13 @@
 package game;
 
-//import game.renderer.Renderer;
-
 import game.renderer.Shader;
 import game.renderer.Texture;
 import org.joml.Vector2f;
-import org.joml.Vector2i;
 import org.lwjgl.BufferUtils;
 
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
+import java.util.Collections;
 
 import static org.lwjgl.opengl.GL11.GL_FLOAT;
 import static org.lwjgl.opengl.GL15.*;
@@ -20,7 +18,7 @@ import static org.lwjgl.opengl.GL30C.glGenVertexArrays;
 public class Tile implements Comparable<Tile> {
     public final Texture texture;
     private final Shader shader;
-    private int vaoID, vboID, eboID;
+    private int vaoID, vboID;
     public int zIndex;
     public ObjectTransform transform;
 
@@ -37,6 +35,8 @@ public class Tile implements Comparable<Tile> {
         this.transform = transform;
         this.zIndex = zIndex;
         this.vertexArray = makeVertexArray(transform.position.x, transform.position.y, transform.scale.x, transform.scale.y);
+        GameWindow.currentScene.tiles.add(this);
+        Collections.sort(GameWindow.currentScene.tiles);
 
 
     }
@@ -63,7 +63,7 @@ public class Tile implements Comparable<Tile> {
         IntBuffer elementBuffer = BufferUtils.createIntBuffer(elementArray.length);
         elementBuffer.put(elementArray).flip();
 
-        eboID = glGenBuffers();
+        int eboID = glGenBuffers();
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, eboID);
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, elementBuffer, GL_STATIC_DRAW);
 

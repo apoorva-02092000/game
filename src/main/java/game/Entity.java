@@ -25,6 +25,7 @@ public class Entity {
     private final Shader shader;
     private int vaoID, vboID, eboID;
     public ObjectTransform transform;
+    private ObjectTransform prevTransform;
 
     public boolean isDirty;
 
@@ -40,6 +41,7 @@ public class Entity {
         this.shader = new Shader();
         this.transform = transform;
         makeVertexArray();
+        init();
 
 
     }
@@ -76,20 +78,20 @@ public class Entity {
 
         glVertexAttribPointer(2, uvSize, GL_FLOAT, false, vertexSizeBytes, (positionSize + colorSize) * Float.BYTES);
         glEnableVertexAttribArray(2);
-        isDirty = false;
+        isDirty = true;
     }
 
     public void update(){
-        boolean rebuffered = false;
+        boolean changed = false;
 
         if(isDirty){
             makeVertexArray();
             isDirty = false;
-            rebuffered = true;
+            changed = true;
         }
 
 
-        if(rebuffered){
+        if(changed){
             glBindBuffer(GL_ARRAY_BUFFER, vboID);
             glBufferSubData(GL_ARRAY_BUFFER, 0, vertexArray);
         }
@@ -118,6 +120,13 @@ public class Entity {
         glUseProgram(0);
 
         texture.unbind();
+
+        if(!transform.equals(prevTransform)){
+            System.out.println("yo");
+            isDirty = true;
+            prevTransform = transform;
+        }
+
 
     }
 
