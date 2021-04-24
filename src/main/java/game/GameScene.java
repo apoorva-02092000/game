@@ -51,7 +51,7 @@ public class GameScene extends Scene {
     public void update(float dt) {
         //System.out.println("FPS: " + 1.0f / dt);
         tiles.forEach(Tile::update);
-        player.update();
+        player.update(dt);
     }
 
 }

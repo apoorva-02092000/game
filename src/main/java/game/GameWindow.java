@@ -62,40 +62,40 @@ public class GameWindow {
         });
         glfwSetKeyCallback(window, KeyListener::keyCallback);
 
-        glfwSetKeyCallback(window, (window, key, scancode, action, mods) -> {
-            if(key == GLFW_KEY_W){
-                    GameWindow.currentScene.player.transform.position.y += 1;
-                    currentScene.player.isDirty = true;
-                    GameWindow.currentScene.camera.position.y += 1;
-
-
-
-            }else if(key == GLFW_KEY_S){
-
-                for(int i = 0; i < 15; i++){
-                    GameWindow.currentScene.player.transform.position.y -= 1;
-                    currentScene.player.isDirty = true;
-                    GameWindow.currentScene.camera.position.y -= 1;
-
-                }
-
-            }else if(key == GLFW_KEY_A){
-
-                for(int i = 0; i < 15; i++){
-                    GameWindow.currentScene.player.transform.position.x -= 1;
-                    currentScene.player.isDirty = true;
-                    currentScene.camera.position.x -= 1;
-                }
-
-            }else if(key == GLFW_KEY_D){
-
-                    GameWindow.currentScene.player.transform.position.x += 15;
-                    currentScene.camera.position.x += 15;
-                    currentScene.player.isDirty = true;
-
-            }
-
-        });
+//        glfwSetKeyCallback(window, (window, key, scancode, action, mods) -> {
+//            if(key == GLFW_KEY_W){
+//                    GameWindow.currentScene.player.transform.position.y += 1;
+//                    currentScene.player.isDirty = true;
+//                    GameWindow.currentScene.camera.position.y += 1;
+//
+//
+//
+//            }else if(key == GLFW_KEY_S){
+//
+//                for(int i = 0; i < 15; i++){
+//                    GameWindow.currentScene.player.transform.position.y -= 1;
+//                    currentScene.player.isDirty = true;
+//                    GameWindow.currentScene.camera.position.y -= 1;
+//
+//                }
+//
+//            }else if(key == GLFW_KEY_A){
+//
+//                for(int i = 0; i < 15; i++){
+//                    GameWindow.currentScene.player.transform.position.x -= 1;
+//                    currentScene.player.isDirty = true;
+//                    currentScene.camera.position.x -= 1;
+//                }
+//
+//            }else if(key == GLFW_KEY_D){
+//
+//                    GameWindow.currentScene.player.transform.position.x += 15;
+//                    currentScene.camera.position.x += 15;
+//                    currentScene.player.isDirty = true;
+//
+//            }
+//
+//        });
 
 
 
@@ -119,7 +119,7 @@ public class GameWindow {
     public void loop() {
         float beginTime = (float)glfwGetTime();
         float endTime;
-        float dt = -1.0f;
+        float dt = 0;
 
         while (!glfwWindowShouldClose(window)) {
             // Poll events

@@ -24,6 +24,8 @@ public class Entity {
     private int vaoID, vboID, eboID;
     public ObjectTransform transform;
     private ObjectTransform prevTransform;
+    private float velocity = 3.5f;
+    private float gravity = 9.8f;
 
     public boolean isDirty;
 
@@ -79,7 +81,8 @@ public class Entity {
         isDirty = true;
     }
 
-    public void update(){
+
+    public void update(float dt){
         boolean changed = false;
 
         if(isDirty){
@@ -125,15 +128,22 @@ public class Entity {
             prevTransform = transform;
         }
 
+
         if(KeyListener.isKeyPressed(GLFW_KEY_A)){
-
+            move(-velocity, 0);
         }else if(KeyListener.isKeyPressed(GLFW_KEY_D)){
-
-        }else if(KeyListener.isKeyPressed(GLFW_KEY_SPACE)){
-
+            move(velocity, 0);
+        }else if(KeyListener.isKeyPressed(GLFW_KEY_SPACE)) {
         }
 
+    }
 
+    public void move(float velX, float velY){
+        this.transform.position.x += velX;
+        this.transform.position.y += velY;
+        GameWindow.currentScene.camera.position.x += velX;
+        GameWindow.currentScene.camera.position.y += velY;
+        markDirty();
     }
 
 
@@ -201,5 +211,17 @@ public class Entity {
 
         }
         this.vertexArray = vertexArray;
+    }
+
+    public void markDirty(){
+        isDirty = true;
+    }
+
+    public void setVelocity(float velocity) {
+        this.velocity = velocity;
+    }
+
+    public void setGravity(float gravity){
+        this.gravity = gravity;
     }
 }
