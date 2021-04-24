@@ -4,6 +4,8 @@ import org.joml.Vector2f;
 import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.*;
 
+import java.util.concurrent.TimeUnit;
+
 import static org.lwjgl.glfw.Callbacks.*;
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
@@ -58,35 +60,41 @@ public class GameWindow {
             //currentScene.player.transform.position.y += b * 10;
 
         });
-
         glfwSetKeyCallback(window, (window, key, scancode, action, mods) -> {
             if(key == GLFW_KEY_W){
-                for(int i = 0; i < 10; i++){
-                    GameWindow.currentScene.player.transform.position.y += 0.5 * i;
+                for(int i = 0; i < 15; i++){
+                    GameWindow.currentScene.player.transform.position.y += 1;
                     currentScene.player.isDirty = true;
+                    GameWindow.currentScene.camera.position.y += 1;
                 }
+
 
             }else if(key == GLFW_KEY_S){
 
-                for(int i = 0; i < 10; i++){
-                    GameWindow.currentScene.player.transform.position.y -= 0.5 * i;
+                for(int i = 0; i < 15; i++){
+                    GameWindow.currentScene.player.transform.position.y -= 1;
                     currentScene.player.isDirty = true;
+                    GameWindow.currentScene.camera.position.y -= 1;
+
                 }
 
             }else if(key == GLFW_KEY_A){
 
-                for(int i = 0; i < 10; i++){
-                    GameWindow.currentScene.player.transform.position.x -= 0.5 * i;
+                for(int i = 0; i < 15; i++){
+                    GameWindow.currentScene.player.transform.position.x -= 1;
                     currentScene.player.isDirty = true;
+                    currentScene.camera.position.x -= 1;
                 }
 
             }else if(key == GLFW_KEY_D){
 
-                for(int i = 0; i < 10; i++){
-                    GameWindow.currentScene.player.transform.position.x += 0.5 * i;
+                for(int i = 0; i < 15; i++){
+                    GameWindow.currentScene.player.transform.position.x += 1;
+                    currentScene.camera.position.x += 1;
                     currentScene.player.isDirty = true;
                 }
             }
+
         });
 
 
