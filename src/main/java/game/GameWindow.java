@@ -1,10 +1,10 @@
 package game;
 
+import game.renderer.Texture;
+import game.util.KeyListener;
 import org.joml.Vector2f;
 import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.*;
-
-import java.util.concurrent.TimeUnit;
 
 import static org.lwjgl.glfw.Callbacks.*;
 import static org.lwjgl.glfw.GLFW.*;
@@ -57,16 +57,17 @@ public class GameWindow {
         glfwSetScrollCallback(window, (window, v , b) -> {
             System.out.println(b);
             currentScene.camera.position.y += b * 10;
-            //currentScene.player.transform.position.y += b * 10;
+
 
         });
+        glfwSetKeyCallback(window, KeyListener::keyCallback);
+
         glfwSetKeyCallback(window, (window, key, scancode, action, mods) -> {
             if(key == GLFW_KEY_W){
-                for(int i = 0; i < 15; i++){
                     GameWindow.currentScene.player.transform.position.y += 1;
                     currentScene.player.isDirty = true;
                     GameWindow.currentScene.camera.position.y += 1;
-                }
+
 
 
             }else if(key == GLFW_KEY_S){
@@ -88,14 +89,15 @@ public class GameWindow {
 
             }else if(key == GLFW_KEY_D){
 
-                for(int i = 0; i < 15; i++){
-                    GameWindow.currentScene.player.transform.position.x += 1;
-                    currentScene.camera.position.x += 1;
+                    GameWindow.currentScene.player.transform.position.x += 15;
+                    currentScene.camera.position.x += 15;
                     currentScene.player.isDirty = true;
-                }
+
             }
 
         });
+
+
 
 
 

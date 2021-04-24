@@ -2,26 +2,24 @@ package game;
 
 import game.renderer.Shader;
 import game.renderer.Texture;
+import game.util.KeyListener;
 import org.joml.Vector2f;
 import org.lwjgl.BufferUtils;
 
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 
-import static org.lwjgl.opengl.GL11.GL_FLOAT;
-import static org.lwjgl.opengl.GL11.GL_TRIANGLES;
-import static org.lwjgl.opengl.GL11.GL_UNSIGNED_INT;
-import static org.lwjgl.opengl.GL11.glDrawElements;
+import static org.lwjgl.glfw.GLFW.*;
+import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL13.GL_TEXTURE0;
 import static org.lwjgl.opengl.GL13.glActiveTexture;
 import static org.lwjgl.opengl.GL15.*;
-import static org.lwjgl.opengl.GL15.GL_STATIC_DRAW;
 import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL30C.glBindVertexArray;
 import static org.lwjgl.opengl.GL30C.glGenVertexArrays;
 
 public class Entity {
-    public final Texture texture;
+    public Texture texture;
     private final Shader shader;
     private int vaoID, vboID, eboID;
     public ObjectTransform transform;
@@ -125,6 +123,14 @@ public class Entity {
             System.out.println("yo");
             isDirty = true;
             prevTransform = transform;
+        }
+
+        if(KeyListener.isKeyPressed(GLFW_KEY_A)){
+
+        }else if(KeyListener.isKeyPressed(GLFW_KEY_D)){
+
+        }else if(KeyListener.isKeyPressed(GLFW_KEY_SPACE)){
+
         }
 
 
